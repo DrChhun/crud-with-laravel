@@ -11,5 +11,11 @@
     @if(Auth::check()) 
         <h1>You're login</h1>
     @endif
+
+    <h1>Article List :</h1>
+    @foreach($all as $all)
+        <h1>{{$all->title}}</h1>
+        <a href="/articles/{{$all->id}}">Click to read</a>
+    @endforeach
 </body>
 </html>
