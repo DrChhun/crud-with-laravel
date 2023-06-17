@@ -51,7 +51,8 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $detail = Article::where('id', $id)->get();
+        return view('Article', compact('detail'));
     }
 
     /**

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,7 @@ Route::get('/', function () {
     return view('Homepage');
 });
 
-Route::get('/home', function() {
-    return view('Homepage');
-});
+Route::get('/home', [HomeController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
