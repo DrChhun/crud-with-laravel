@@ -28,14 +28,6 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {   
-
-        // dd($request->title);
-
-        // $this->validate($request, array (
-        //     'title' => 'required',
-        //     'content' => 'required'
-        // ));
-
         $content = Article::create([
                     'title' => $request->title,
                     'content' => $request->content,
@@ -59,16 +51,23 @@ class ArticleController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
+    {   
+        $show = $id;
+        return view('Update', compact('show'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
+    {   
+        $content = Article::find($id)->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        return redirect()->back();
+
     }
 
     /**
@@ -76,6 +75,8 @@ class ArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Article::find($id);
+        $post->delete();
+        return redirect()->back();
     }
 }
