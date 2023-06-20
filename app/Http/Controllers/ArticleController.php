@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ArticleController extends Controller
 {
@@ -19,7 +20,7 @@ class ArticleController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
-    {
+    {   
         return view('Upload');
     }
 
@@ -61,6 +62,10 @@ class ArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {   
+        if (!Gate::allows('update-post')) {
+            abort(403);
+        }
+
         $content = Article::find($id)->update([
             'title' => $request->title,
             'content' => $request->content,
