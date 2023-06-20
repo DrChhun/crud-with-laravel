@@ -15,9 +15,9 @@
     <h1>Article List :</h1>
     @foreach($all as $all)
         <h1>{{$all->title}}</h1>
-        <a href="/articles/{{$all->id}}">Click to read</a>
-        <a href="/delete/{{$all->id}}">Delete post</a>
-        <a href="/articles/{{$all->id}}/edit">Update post</a>
+        <a href="{{route('articles.show', $all->id)}}">Click to read</a>
+        <a href="{{route('articles.delete', $all->id)}}">Delete post</a>
+        <a href="{{route('articles.edit', $all->id)}}">Update post</a>
     @endforeach
 </body>
 </html>
